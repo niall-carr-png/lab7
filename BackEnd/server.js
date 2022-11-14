@@ -25,21 +25,23 @@ const mongoose = require('mongoose');
 
 main().catch(err => console.log(err));
 
+// Defines server, username and password
 async function main() {
   await mongoose.connect('mongodb+srv://admin:admin@cluster0.rcvxh1j.mongodb.net/?retryWrites=true&w=majority');
   
   // use `await mongoose.connect('mongodb://user:password@localhost:27017/test');` if your database has auth enabled
 }
 
+// Defines variables to be input
 const bookSchema = new mongoose.Schema({
     title: String,
     cover:String,
     author:String
   });
 
-
 const bookModel = mongoose.model('books', bookSchema);
 
+// Formatting of input
 app.post('/api/books',(req, res) => {
     console.log(req.body); 
     bookModel.create({
